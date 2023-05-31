@@ -1,35 +1,30 @@
+import 'package:bmi_starting/pages/input.dart';
+import 'package:bmi_starting/pages/result.dart';
+import 'package:bmi_starting/themes/darkTheme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
-void main() => runApp(BMICalculator());
+void main() {
+  SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(systemNavigationBarColor: Color(0xFF0A0E21)));
+  runApp(const MyApp());
+}
+class MyApp extends StatelessWidget {
+  
+  const MyApp({Key? key}) : super(key: key);
 
-class BMICalculator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: InputPage(),
-    );
-  }
-}
 
-class InputPage extends StatefulWidget {
-  @override
-  State<InputPage> createState() => _InputPageState();
-}
-
-class _InputPageState extends State<InputPage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('BMI CALCULATOR'),
-      ),
-      body: Center(
-        child: Text('Body Text'),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: Icon(Icons.add),
-      ),
+      debugShowCheckedModeBanner: false,
+      theme: darkTheme(),
+      initialRoute: InputScreen.routeName,
+      routes: {
+        
+        InputScreen.routeName: (context) => const InputScreen(),
+        ResultScreen.routeName: (context) => const ResultScreen(),
+      },
     );
   }
 }
